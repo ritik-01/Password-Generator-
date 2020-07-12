@@ -1,5 +1,6 @@
 function getPassword(){
     var all = "";
+    var alertBox = document.querySelector('.alertBox');
     var ele = document.getElementsByName('type');       
             for(i = 0; i < ele.length; i++) { 
                 if(ele[i].checked) 
@@ -29,4 +30,18 @@ function getPassword(){
         button.innerHTML = "Re-Generate Password"
     }
     document.getElementById('password').nextElementSibling.value = password;
+    alertBox.innerHTML = 'Copied Password: '+ password;
+
+}
+
+function copyPassword(){
+    var alertBox = document.querySelector('.alertBox');
+    var copyPass = document.getElementById('password').nextElementSibling;
+    copyPass.select();
+    copyPass.setSelectionRange(0,9999);
+    document.execCommand('copy');
+    alertBox.classList.toggle('active');
+    setTimeout(function(){
+        alertBox.classList.toggle('active');
+    },2000);
 }
